@@ -1,0 +1,8 @@
+<h2>Nannyes</h2>
+<ul class="nannyes">
+  <li *ngFor="let nanny of nannyes" (click)="onSelect(nanny)" [class.selected]="nanny === selectedNanny">
+    <span class="badge">{{nanny.id}}</span> {{nanny.name}}
+  </li>
+</ul> 
+
+<app-nanny-detail [nanny] = "selectedNanny"></app-nanny-detail>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Nanny} from '../nanny';
-import {NANNYES} from '../mock-nannyes';
+import { NannyService} from '../nanny.service';
 
 @Component({
   selector: 'app-nannyes',
@@ -8,16 +8,22 @@ import {NANNYES} from '../mock-nannyes';
   styleUrls: ['./nannyes.component.css']
 })
 export class NannyesComponent implements OnInit {
-  nannyes = NANNYES;
+  nannyes : Nanny[];
   selectedNanny : Nanny ;
+
+  getNannyes() : void {
+    this.nannyService.getNannyes()
+      .subscribe(n => this.nannyes = n);
+  }
 
   onSelect(nanny:Nanny){
     this.selectedNanny = nanny;
   }
 
-  constructor() { }
+  constructor(private nannyService: NannyService) { }
 
   ngOnInit() {
+    this.getNannyes();
   }
 
 }
